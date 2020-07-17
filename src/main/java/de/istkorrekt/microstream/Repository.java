@@ -34,11 +34,6 @@ public class Repository {
         storageManager.store(node);
     }
 
-    public void wipe() {
-        storageManager.setRoot(null);
-        save();
-    }
-
     public void shutdown() {
         storageManager.shutdown();
     }
