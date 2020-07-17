@@ -13,13 +13,13 @@ public class Repository {
         storageManager = EmbeddedStorage.start(location);
     }
 
-    public RootData load() {
+    public Root load() {
         Object object = storageManager.root();
-        if (object instanceof RootData) {
-            return (RootData) object;
+        if (object instanceof Root) {
+            return (Root) object;
         }
         if (object == null) {
-            RootData root = new RootData();
+            Root root = new Root();
             storageManager.setRoot(root);
             return root;
         }
@@ -30,8 +30,16 @@ public class Repository {
         storageManager.storeRoot();
     }
 
+    public void saveNode(Node node) {
+        storageManager.store(node);
+    }
+
     public void wipe() {
         storageManager.setRoot(null);
         save();
+    }
+
+    public void shutdown() {
+        storageManager.shutdown();
     }
 }
